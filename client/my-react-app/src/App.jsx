@@ -10,9 +10,9 @@ function App() {
 
   const fetchBooks = async () => {
     try {
-      const repsonse = await fetch ("http://127.0.0.1:8000/api/books/");
-      const data = await Response.json();
-      console.log(data);
+      const response = await fetch ("http://127.0.0.1:8000/api/books/");
+      const data = await response.json();
+      setBooks(data);
     } catch (err) {
       console.log(err);
     }
@@ -27,6 +27,13 @@ function App() {
         <input type='number' placeholder='Release Date...' />
         <button> Add Book </button>
       </div>
+      {books.map((book) => (
+        <div>
+          {" "}
+          <p>Title: {book.title}</p>
+          <p>Release Year: {book.release_year}</p>
+        </div>
+      ))}
     </>
   );
 }
